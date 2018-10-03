@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "8.12.0"
+script:
+  - yarn run lint
+  - yarn run build
+deploy:
+  provider: pages
+  skip-clean: true
+  github-token: $GH_PROG_PRES_TOKEN
+  keep-history: true
+  local-dir: dist
+  on:
+    branch: master
