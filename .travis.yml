@@ -6,7 +6,7 @@ script:
   - yarn run build
 deploy:
   provider: pages
-  skip-clean: true
+  skip-cleanup: true
   github-token: $GH_PROG_PRES_TOKEN
   local-dir: dist
   on:
