@@ -1,13 +1,13 @@
 import Vue from "vue";
 import Router from "vue-router";
 const Limited = () =>
-  import(/* webpackChunkName: "view-[request]" */ "./sections/Limited.vue");
+  import(/* webpackChunkName: "view-limited" */ "./sections/Limited.vue");
 const Intermediate = () =>
-  import(/* webpackChunkName: "view-[request]" */ "./sections/Intermediate.vue");
+  import(/* webpackChunkName: "view-intermediate" */ "./sections/Intermediate.vue");
 const Advanced = () =>
-  import(/* webpackChunkName: "view-[request]" */ "./sections/Advanced.vue");
+  import(/* webpackChunkName: "view-advanced" */ "./sections/Advanced.vue");
 const All = () =>
-  import(/* webpackChunkName: "view-[request]" */ "./sections/All.vue");
+  import(/* webpackChunkName: "view-all" */ "./sections/All.vue");
 Vue.use(Router);
 
 export default new Router({
