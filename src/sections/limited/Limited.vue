@@ -131,6 +131,33 @@ export default {
   infos: {
     title: "Limited Programming",
     path: "limited"
+  },
+  data() {
+    return {
+      images: [
+        "https://i.imgur.com/pIQmupd.jpg",
+        "https://i.imgur.com/EJ8IKBB.jpg",
+        "https://i.imgur.com/EBl7bkg.jpg",
+        "https://i.imgur.com/6fJrpDD.jpg",
+        "https://i.imgur.com/Gc9Wq8Z.jpg",
+        "https://i.imgur.com/LjuxlIX.jpg",
+        "https://i.imgur.com/oFLXS67.jpg",
+        "https://i.imgur.com/MjsvcVU.jpg"
+      ]
+    };
+  },
+  mounted() {
+    this.preloadImage();
+  },
+  methods: {
+    preloadImage(idx) {
+      idx = idx || 0;
+      if (this.images && this.images.length > idx) {
+        let img = new Image();
+        img.onload = () => this.preloadImage(idx + 1);
+        img.src = this.images[idx];
+      }
+    }
   }
 };
 </script>
