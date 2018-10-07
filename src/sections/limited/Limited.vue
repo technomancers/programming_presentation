@@ -80,31 +80,74 @@
           |  grammer should be able to read many languages
         p(v-if="step >= 3") May only be able to write few languages efficiently
         p(v-if="step >= 4") But once you know one, others come easier (just like if you learned Latin)
-    slide(:steps=7, enter="fadeInDown", leave="fadeOutDown")
+    slide(:steps=13, enter="fadeInDown", leave="fadeOutDown")
       h2 Kotlin
       .center
-        p(v-if="step >= 2") Very easy to read and teach
-        p(v-if="step >= 3") It is an Object Oriented Language (most commonly used languages are)
-        p(v-if="step >= 4") Runs against JRE (which means our robot can run it)
-        p(v-if="step >= 5") Can import Java (required as that is what WPI Library is written in)
-        p(v-if="step >= 6") A lot of build time checks
-        p(v-if="step >= 7") Becoming Android's standard language
-        //- TODO(WD): Show example snippet of code
-    slide(:steps=6, enter="fadeInUp", leave="fadeOutUp")
+        eg-transition(leave="bounceOutLeft")
+          .subslide(v-if="step >= 2 && step <= 7")
+            p(v-if="step >= 2") Very easy to read and teach
+            p(v-if="step >= 3") It is an Object Oriented Language (most commonly used languages are)
+            p(v-if="step >= 4") Runs against JRE (which means our robot can run it)
+            p(v-if="step >= 5") Can import Java (required as that is what WPI Library is written in)
+            p(v-if="step >= 6") A lot of build time checks
+            p(v-if="step >= 7") Becoming Android's standard language
+        eg-transition(enter="bounceInRight", leave="bounceOutLeft")
+          .subslide(v-if="step >= 8")
+            eg-code-block(lang="kotlin").
+              override fun autonomousInit() {
+                  val input = autoChooser.selected <eg-code-comment :active="step >= 9" enter="fadeInRight"> Get what side our robot is on.</eg-code-comment>
+                  val side = DriverStation.getInstance().gameSpecificMessage.toCharArray() <eg-code-comment :active="step >= 10" enter="fadeInRight"> Get what side is ours.</eg-code-comment>
+                  if(input == StartingPosition.LEFT && side[0] == 'L'){
+                      Offensive().start() <eg-code-comment :active="step >= 11" enter="fadeInRight"> If robot is on left and our side is lit.</eg-code-comment>
+                  } else if(input == StartingPosition.RIGHT && side[0]== 'R'){
+                      Offensive().start() <eg-code-comment :active="step >=12" enter="fadeInRight"> If robot is on right and our side is lit.</eg-code-comment>
+                  } else {
+                      Defensive().start() <eg-code-comment :active="step >= 13" enter="fadeInRight"> Anything else (middle position, left but our side is not lit).</eg-code-comment>
+                  }
+              }
+
+    slide(:steps=14, enter="fadeInUp", leave="fadeOutUp")
       h2 C++ (Arduino)
       .center
-        p(v-if="step >= 2") A lot of games and programs are written in C++
-        p(v-if="step >= 3") Very low level language
-        p(v-if="step >= 4") Harder to read but not difficult
-        p(v-if="step >= 5") Creates some of the fastest binaries
-        p(v-if="step >= 6") This is what the Arduino "reads" when it runs
-        //- TODO(WD): Show example snippet of code
+        eg-transition(leave="bounceOutLeft")
+          .subslide(v-if="step >=2 && step <=6")
+            p(v-if="step >= 2") A lot of games and programs are written in C++
+            p(v-if="step >= 3") Very low level language
+            p(v-if="step >= 4") Harder to read but not difficult
+            p(v-if="step >= 5") Creates some of the fastest binaries
+            p(v-if="step >= 6") This is what the Arduino "reads" when it runs
+        eg-transition(enter="bounceInRight", leave="bounceOutLeft")
+          .subslide(v-if="step >= 7")
+            eg-code-block(lang="cpp").
+              int HCSR04::distance(float speedOfSound)
+              {
+                unsigned long maxTime = (_maxTol * 2) / speedOfSound; <eg-code-comment :active="step >= 8" enter="fadeInRight"> Max time to listen for ping.</eg-code-comment>
+                int iteration = 0;
+              LOOP:
+                iteration++;
+                if (iteration > _retries)
+                {
+                  return _badValue; <eg-code-comment :active="step >= 9" enter="fadeInRight"> If we tried too many times, return a bad value (-1).</eg-code-comment>
+                }
+                unsigned long duration = _echoInMicroseconds(maxTime); <eg-code-comment :active="step >= 10" enter="fadeInRight"> Ping and listen.</eg-code-comment>
+                int distance = (duration * speedOfSound / 2); <eg-code-comment :active="step >= 11" enter="fadeInRight"> Caclulate distance.</eg-code-comment>
+                if (distance < _minTol || distance > _maxTol)
+                {
+                  if (_retry){
+                    delayMicroseconds(10);
+                    goto LOOP; <eg-code-comment :active="step >= 12" enter="fadeInRight"> Try again if not within tolerance.</eg-code-comment>
+                  }else{
+                    return _badValue; <eg-code-comment :active="step >= 13" enter="fadeInRight"> Return bad value if we don't want to retry.</eg-code-comment>
+                  }
+                }
+                return distance; <eg-code-comment :active="step >= 14" enter="fadeInRight"> Return distance if we think it is a good reading.</eg-code-comment>
+              }
+
     slide
       h3 null reference is not set to an instance of an object
       p.center: small Things I am still working on
       .quarter
         ul
-          li Code Snippets
           li Sensors
             ul
               li Thermometers
