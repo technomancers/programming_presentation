@@ -1,20 +1,43 @@
 import Vue from "vue";
 import Router from "vue-router";
-const Limited = () =>
-  import(/* webpackChunkName: "view-limited" */ "./sections/Limited.vue");
-const Intermediate = () =>
-  import(/* webpackChunkName: "view-intermediate" */ "./sections/Intermediate.vue");
-const Advanced = () =>
-  import(/* webpackChunkName: "view-advanced" */ "./sections/Advanced.vue");
-const All = () =>
-  import(/* webpackChunkName: "view-all" */ "./sections/All.vue");
+import Limited from "./sections/limited/Limited.vue";
+import Intermediate from "./sections/intermediate/Intermediate.vue";
+import Advanced from "./sections/advanced/Advanced.vue";
+import All from "./sections/All.vue";
 Vue.use(Router);
 
 export default new Router({
   routes: [
-    { path: "/limited", component: Limited },
-    { path: "/intermediate", component: Intermediate },
-    { path: "/advanced", component: Advanced },
+    {
+      path: "/limited",
+      component: Limited,
+      props: {
+        onEndExit: () => {
+          return;
+        },
+        startStep: 1
+      }
+    },
+    {
+      path: "/intermediate",
+      component: Intermediate,
+      props: {
+        onEndExit: () => {
+          return;
+        },
+        startStep: 1
+      }
+    },
+    {
+      path: "/advanced",
+      component: Advanced,
+      props: {
+        onEndExit: () => {
+          return;
+        },
+        startStep: 1
+      }
+    },
     { path: "/", component: All }
   ]
 });

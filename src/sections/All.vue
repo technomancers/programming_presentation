@@ -4,7 +4,7 @@
     slide
       .center
         h2 Programming Essentials
-        h4 Esentially Programming
+        h4 Essentially Programming
     slide(:mouseNavigation="false")
       .center
         h2 What do you want to see?
